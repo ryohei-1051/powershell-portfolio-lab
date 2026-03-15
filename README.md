@@ -1,4 +1,4 @@
-# PowerShell Lab Repository (BCIT)
+# PowerShell Lab Repository
 
 This repository is a collection of hands-on PowerShell labs for Systems Administrator / Infrastructure skill building.
 
