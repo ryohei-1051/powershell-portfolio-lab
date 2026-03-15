@@ -98,9 +98,3 @@ See `screenshots/expected-output.txt` for sample output using `-WhatIf`.
 - Existence checks before create/delete
 - Working with OU/CN Distinguished Names
 - Counters + summary output
-
-## Disclaimer
-Educational/lab use only. Do not upload real passwords or production data to a public repository.
-```
-::contentReference[oaicite:0]{index=0}
-```
