@@ -2,7 +2,7 @@
 Import-Module ActiveDirectory -ErrorAction Stop
 
 # Store the data from ADUsers.csv into the $ADUsers variable
-$CSVPath = "C:\powershell-lab\bulkusers.template.csv"
+$CSVPath = Join-Path $PSScriptRoot "..\data\bulkusers.template.csv"
 $ADUsers = Import-Csv -Path $CSVPath -ErrorAction Stop
 
 # Initialize counters
