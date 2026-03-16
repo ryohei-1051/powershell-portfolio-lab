@@ -1,5 +1,7 @@
-# PowerShell Lab: Bulk Active Directory User Management (CSV)
+# Lab 01: AD Bulk Users (Create/Delete) from CSV
+
 ## Overview
+Bulk-create and bulk-delete Active Directory users using PowerShell and a CSV template.
 This repo archives a BCIT in-class PowerShell lab for:
 - Bulk **AD user creation** from CSV
 - Bulk **AD user deletion** from CSV
@@ -7,18 +9,18 @@ This repo archives a BCIT in-class PowerShell lab for:
 For public sharing, the sample uses placeholders like `example.local` and a template CSV.
 
 ## Repository Structure
-- `scripts/bulkusers_create.ps1`
-- `scripts/bulkusers_delete.ps1`
-- `data/bulkusers.template.csv`
-- `.gitignore`
-- `README.md`
+- `labs/01-ad-bulk-users/scripts/bulkusers_create.ps1`
+- `labs/01-ad-bulk-users/scripts/bulkusers_delete.ps1`
+- `labs/01-ad-bulk-users/data/bulkusers.template.csv`
+- `labs/01-ad-bulk-users/.gitignore`
+- `labs/01-ad-bulk-users/README.md`
 
 ## Requirements
 - Windows + **RSAT ActiveDirectory module**
 - Permissions to create/delete users in the target OU/container
 
 ## CSV Template
-File: `data/bulkusers.template.csv`  
+File: `labs/01-ad-bulk-users/data/bulkusers.template.csv`  
 Header:
 ```csv
 firstname,lastname,username,password,email,streetaddress,city,state,country,department,telephone,jobtitle,company,ou
@@ -46,12 +48,12 @@ $CSVPath = Join-Path $PSScriptRoot "..\data\bulkusers.template.csv"
 From repo root:
 Create users:
 ```
-.\scripts\bulkusers_create.ps1
+.\bulkusers_create.ps1
 ```
 
 Delete users (destructive):
 ```
-.\scripts\bulkusers_delete.ps1
+.\bulkusers_delete.ps1
 ```
 
 Safer delete test:
