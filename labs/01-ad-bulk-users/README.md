@@ -48,12 +48,14 @@ $CSVPath = Join-Path $PSScriptRoot "..\data\bulkusers.template.csv"
 From repo root:
 Create users:
 ```
-.\bulkusers_create.ps1
+cd .\labs\01-ad-bulk-users\
+.\scripts\bulkusers_create.ps1
 ```
 
 Delete users (destructive):
 ```
-.\bulkusers_delete.ps1
+cd .\labs\01-ad-bulk-users\
+.\scripts\bulkusers_delete.ps1
 ```
 
 Safer delete test:
