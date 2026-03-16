@@ -1,6 +1,9 @@
-# Don't upload real CSVs with passwords or real lab data
-data/bulkusers.csv
-data/*.csv
+# Ignore real CSVs (keep local)
+**/data/*.csv
 
-# Optional (if you generate logs later)
+# Allow template CSVs (public-safe)
+!**/data/*.template.csv
+
+# Logs / reports (optional)
 *.log
+**/reports/*
