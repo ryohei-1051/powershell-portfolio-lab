@@ -26,3 +26,12 @@ From the lab folder:
 ```powershell
 cd .\labs\02-ad-group-management\
 .\scripts\group_membership.ps1 -WhatIf
+```
+Remove -WhatIf when ready.
+
+## Output
+
+A report is saved in reports/:
+group_membership_YYYYMMDD_HHMMSS.csv
+
+---
