@@ -1,16 +1,3 @@
-
-## 2) Add the missing “completion” sections
-To make Lab 02 portfolio-complete, add:
-
-- **Setup (optional)**: create `HR-Users` / `VPN-Users` groups (since they don’t exist by default in a fresh domain)
-- **Run**: show `-WhatIf` first, then real run
-- **Verification + Evidence**: verify membership and point to screenshot/report files
-
----
-
-## Paste-ready improved `labs/02-ad-group-management/README.md`
-(You can replace your README with this.)
-
 ```markdown
 # Lab 02: AD Group Management (Bulk Add/Remove)
 
