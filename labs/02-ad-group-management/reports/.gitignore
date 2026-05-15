@@ -1,2 +1,3 @@
-**/reports/*
-!**/reports/sample-report.csv
+*
+!.gitignore
+!sample-report.csv
