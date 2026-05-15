@@ -1,1 +1,3 @@
-
+"username","group","action","status","reason","timestamp"
+"jsmith","HR-Users","add","Success","Added","5/14/2026 10:19:51 PM"
+"jdoe","VPN-Users","remove","Success","Removed","5/14/2026 10:19:51 PM"
