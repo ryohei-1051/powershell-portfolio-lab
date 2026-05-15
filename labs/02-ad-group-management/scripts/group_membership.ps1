@@ -32,6 +32,12 @@ foreach ($r in $rows) {
 
     try {
         $userObj = Get-ADUser -LDAPFilter "(sAMAccountName=$username)" -ErrorAction Stop
+        if (-not $userObj) {
+        $status = "Skipped"
+        $reason = "User not found"
+        $results += [pscustomobject]@{ username=$username; group=$group; action=$action; status=$status; reason=$reason; timestamp=(Get-Date) }
+        continue
+        }
     } catch {
         $status = "Skipped"
         $reason = "User not found"
