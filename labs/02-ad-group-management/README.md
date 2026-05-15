@@ -33,6 +33,12 @@ jsmith,HR-Users,add
 jdoe,VPN-Users,remove
 ```
 
+## Setup (optional)
+Create the lab groups if they do not exist:
+```powershell
+cd .\labs\02-ad-group-management\
+.\scripts\setup_groups.ps1
+
 ## Evidence
 - Screenshot: `screenshots/run-whatif-and-real.png`
 - Expected output: `screenshots/expected-output.txt`
