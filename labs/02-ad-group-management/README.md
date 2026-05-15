@@ -1,12 +1,18 @@
 # Lab 02: AD Group Management (Bulk Add/Remove)
 
 ## Overview
-Bulk add/remove AD users to/from AD groups using a CSV file.
+Bulk add/remove AD users to/from AD groups using a CSV input file.  
+The script generates a timestamped report in `reports/`.
 
-## Structure
+> My lab domain: `ryohei.azlab` (`DC=ryohei,DC=azlab`).  
+> Template values are generic for public use.
+
+## Files
+- `scripts/setup_groups.ps1` (optional prereq helper)
 - `scripts/group_membership.ps1`
 - `data/group_membership.template.csv`
-- `reports/` (script outputs a timestamped CSV report)
+- `reports/` (output)
+- `screenshots/` (expected output)
 
 ## Requirements
 - Windows + RSAT ActiveDirectory module
@@ -20,18 +26,8 @@ Columns:
 - `group` (group name or DN)
 - `action` (`add` or `remove`)
 
-## Run
-From the lab folder:
-
-```powershell
-cd .\labs\02-ad-group-management\
-.\scripts\group_membership.ps1 -WhatIf
-```
-Remove -WhatIf when ready.
-
-## Output
-
-A report is saved in reports/:
-group_membership_YYYYMMDD_HHMMSS.csv
-
----
+Example:
+```csv
+username,group,action
+jsmith,HR-Users,add
+jdoe,VPN-Users,remove
