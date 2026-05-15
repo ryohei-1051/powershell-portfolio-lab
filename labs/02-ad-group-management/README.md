@@ -1,4 +1,3 @@
-```markdown
 # Lab 02: AD Group Management (Bulk Add/Remove)
 
 ## Overview
@@ -32,3 +31,4 @@ Example:
 username,group,action
 jsmith,HR-Users,add
 jdoe,VPN-Users,remove
+```
