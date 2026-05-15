@@ -32,3 +32,9 @@ username,group,action
 jsmith,HR-Users,add
 jdoe,VPN-Users,remove
 ```
+
+## Evidence
+- Screenshot: `screenshots/run-whatif-and-real.png`
+- Expected output: `screenshots/expected-output.txt`
+- Verification: `screenshots/verification-output.txt`
+- Sample report: `reports/sample-report.csv`
