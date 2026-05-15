@@ -13,6 +13,9 @@ $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $reportPath = Join-Path $ReportDir "group_membership_$timestamp.csv"
 
 $rows = Import-Csv -Path $CsvPath -ErrorAction Stop
+Write-Host "CSVPath = $CsvPath"
+Write-Host "Resolved = $((Resolve-Path $CsvPath).Path)"
+
 $results = @()
 
 foreach ($r in $rows) {
