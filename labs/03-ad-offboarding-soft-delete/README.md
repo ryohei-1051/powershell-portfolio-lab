@@ -36,6 +36,21 @@ Columns:
 `targetOU` (optional; defaults to `OU=Disabled Users,<domainDN>`)
 `removeFromGroups` (`true/false`)
 
+Example:
+```csv
+username,group,action
+ECarter,Marketing-Users,remove
+DWright,Marketing-Users,remove
+SMitchell,Marketing-Users,remove
+ERamirez,Marketing-Users,remove
+OBennett,Marketing-Users,remove
+JFoster,Marketing-Users,add
+MHoward,Marketing-Users,add
+LTorres,Marketing-Users,add
+AMurphy,Marketing-Users,add
+NHughes,Marketing-Users,add
+```
+
 ## Run
 Dry run:
 ```powershell
