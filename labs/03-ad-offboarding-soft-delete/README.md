@@ -41,14 +41,7 @@ Example:
 username,targetOU,removeFromGroups
 ECarter,"OU=Disabled Users,DC=example,DC=local",true
 DWright,"OU=Disabled Users,DC=example,DC=local",true
-SMitchell,"OU=Disabled Users,DC=example,DC=local",true
-ERamirez,"OU=Disabled Users,DC=example,DC=local",true
-OBennett,"OU=Disabled Users,DC=example,DC=local",true
-JFoster,"OU=Disabled Users,DC=example,DC=local",true
-MHoward,"OU=Disabled Users,DC=example,DC=local",true
-LTorres,"OU=Disabled Users,DC=example,DC=local",true
-AMurphy,"OU=Disabled Users,DC=example,DC=local",true
-NHughes,"OU=Disabled Users,DC=example,DC=local",true
+...
 ```
 Replace `DC=example,DC=local` with your domain DN or leave blank.
 
