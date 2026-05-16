@@ -27,3 +27,32 @@ Create the Disabled Users OU:
 cd .\labs\03-ad-offboarding-soft-delete\
 .\scripts\setup_disabled_ou.ps1
 ```
+
+## CSV Template
+`data/offboard_users.template.csv`
+
+Columns:
+`username` (SamAccountName)
+`targetOU` (optional; defaults to `OU=Disabled Users,<domainDN>`)
+`removeFromGroups` (`true/false`)
+
+## Run
+Dry run:
+```powershell
+.\scripts\offboard_users.ps1 -WhatIf
+```
+
+Real run:
+```powershell
+.\scripts\offboard_users.ps1
+```
+
+## Verification
+```powershell
+Get-ADUser -Identity "jsmith" -Properties Enabled,DistinguishedName | Select SamAccountName,Enabled,DistinguishedName
+Get-ADPrincipalGroupMembership -Identity "jsmith" | Select Name
+```
+
+## Output
+A report is saved to `reports/`:
+`offboard_YYYYMMDD_HHMMSS.csv`
