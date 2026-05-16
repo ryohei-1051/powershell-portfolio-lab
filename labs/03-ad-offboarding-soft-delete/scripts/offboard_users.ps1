@@ -28,9 +28,9 @@ try {
 $results = @()
 
 foreach ($r in $rows) {
-    $username = (($r.username -as [string]) ?? "").Trim()
-    $targetOU = (($r.targetOU -as [string]) ?? "").Trim()
-    $removeFromGroups = (($r.removeFromGroups -as [string]) ?? "").Trim().ToLower()
+    $username = ([string]$r.username).Trim()
+    $targetOU = ([string]$r.targetOU).Trim()
+    $removeFromGroups = ([string]$r.removeFromGroups).Trim().ToLower()
 
     if ([string]::IsNullOrWhiteSpace($username)) { continue }
 
