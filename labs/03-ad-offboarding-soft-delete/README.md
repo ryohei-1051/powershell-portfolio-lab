@@ -36,16 +36,16 @@ cd .\labs\03-ad-offboarding-soft-delete\
 - `targetOU` (optional; if blank, the script defaults to `OU=Disabled Users,<domainDN>`)
 - `removeFromGroups` (`true` / `false`)
 
-**Example**
+**Example (recommended: leave `targetOU` blank)**
 ```csv
 username,targetOU,removeFromGroups
-ECarter,"OU=Disabled Users,DC=example,DC=local",true
-DWright,"OU=Disabled Users,DC=example,DC=local",true
+ECarter,,true
+DWright,,true
 ```
 
 ## Notes
-If you use `targetOU`, replace `DC=example,DC=local` with your domain DN (e.g., `DC=ryohei,DC=azlab`).
-Alternatively, leave `targetOU` blank and the script will automatically use `OU=Disabled Users,<domainDN>`.
+- Recommended approach: leave `targetOU` blank to make the template runnable in any domain.
+- If you want to specify `targetOU`, it must match your domain DN (e.g., `OU=Disabled Users,DC=ryohei,DC=azlab`).
 
 ## Run
 Dry run:
