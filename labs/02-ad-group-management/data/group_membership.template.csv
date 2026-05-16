@@ -1,3 +1,11 @@
 username,group,action
-jsmith,HR-Users,add
-jdoe,VPN-Users,remove
+ECarter,Marketing-Users,remove
+DWright,Marketing-Users,remove
+SMitchell,Marketing-Users,remove
+ERamirez,Marketing-Users,remove
+OBennett,Marketing-Users,remove
+JFoster,Marketing-Users,add
+MHoward,Marketing-Users,add
+LTorres,Marketing-Users,add
+AMurphy,Marketing-Users,add
+NHughes,Marketing-Users,add
