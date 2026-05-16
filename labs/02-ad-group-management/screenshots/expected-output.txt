@@ -1,7 +1,9 @@
 # WhatIf run
 .\scripts\group_membership.ps1 -WhatIf
-WhatIf: Add member to group -> jsmith -> HR-Users
-WhatIf: Remove member from group -> jdoe -> VPN-Users
+WhatIf: Add member to group -> ECarter -> Marketing-Users
+..
+WhatIf: Remove member from group -> DWright -> Marketing-Users
+..
 Report saved: ..\reports\group_membership_YYYYMMDD_HHMMSS.csv
 
 # Real run
