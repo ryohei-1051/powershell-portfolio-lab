@@ -49,8 +49,8 @@ Real run:
 
 ## Verification
 ```powershell
-Get-ADUser -Identity "jsmith" -Properties Enabled,DistinguishedName | Select SamAccountName,Enabled,DistinguishedName
-Get-ADPrincipalGroupMembership -Identity "jsmith" | Select Name
+Get-ADUser -Identity "ECarter" -Properties Enabled,DistinguishedName | Select SamAccountName,Enabled,DistinguishedName
+Get-ADPrincipalGroupMembership -Identity "ECarter" | Select Name
 ```
 
 ## Output
