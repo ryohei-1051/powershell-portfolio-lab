@@ -1,1 +1,5 @@
+JFoster: Enabled False, DN contains OU=Disabled Users
+JFoster groups: Domain Users
 
+ECarter: Enabled False, DN contains OU=Disabled Users
+ECarter groups: Domain Users
