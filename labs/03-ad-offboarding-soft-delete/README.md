@@ -31,19 +31,21 @@ cd .\labs\03-ad-offboarding-soft-delete\
 ## CSV Template
 `data/offboard_users.template.csv`
 
-Columns:
-`username` (SamAccountName)
-`targetOU` (optional; defaults to `OU=Disabled Users,<domainDN>`)
-`removeFromGroups` (`true/false`)
+**Columns**
+- `username` (SamAccountName)
+- `targetOU` (optional; if blank, the script defaults to `OU=Disabled Users,<domainDN>`)
+- `removeFromGroups` (`true` / `false`)
 
-Example:
+**Example**
 ```csv
 username,targetOU,removeFromGroups
 ECarter,"OU=Disabled Users,DC=example,DC=local",true
 DWright,"OU=Disabled Users,DC=example,DC=local",true
-...
 ```
-Replace `DC=example,DC=local` with your domain DN or leave blank.
+
+## Notes
+If you use `targetOU`, replace `DC=example,DC=local` with your domain DN (e.g., `DC=ryohei,DC=azlab`).
+Alternatively, leave `targetOU` blank and the script will automatically use `OU=Disabled Users,<domainDN>`.
 
 ## Run
 Dry run:
