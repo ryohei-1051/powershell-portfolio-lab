@@ -23,3 +23,17 @@ Run on each target (as Admin):
 ```powershell
 Enable-PSRemoting -Force
 ```
+
+From the collector machine, test:
+```powershell
+Test-WSMan -ComputerName <TARGET>
+```
+
+## CSV input
+data/computers.template.csv
+```csv
+ComputerName
+DC01-AZlab
+CLIENT01
+CLIENT02
+```
