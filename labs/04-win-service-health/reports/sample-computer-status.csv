@@ -1,0 +1,3 @@
+"ComputerName","Status","Protocol","Error","TotalServices","IssuesFound","Timestamp"
+"CLIENT1.ryohei.azlab","Success","Wsman","","267","0","5/17/2026 4:15:37 PM"
+"Lab4Server.ryohei.azlab","Success","Wsman","","208","1","5/17/2026 4:15:37 PM"

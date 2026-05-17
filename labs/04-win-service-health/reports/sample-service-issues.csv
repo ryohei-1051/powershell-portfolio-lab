@@ -1,0 +1,2 @@
+"ComputerName","Protocol","Name","DisplayName","State","StartMode","DelayedAutoStart","StartName","ProcessId","Timestamp"
+"Lab4Server.ryohei.azlab","Wsman","RemoteRegistry","Remote Registry","Stopped","Auto","False","NT AUTHORITY\LocalService","0","5/17/2026 4:15:37 PM"
