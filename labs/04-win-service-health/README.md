@@ -30,10 +30,10 @@ Test-WSMan -ComputerName <TARGET>
 ```
 
 ## CSV input
-data/computers.template.csv
+`data/computers.template.csv`
+
 ```csv
 ComputerName
-DC01-AZlab
-CLIENT01
-CLIENT02
+CLIENT1.ryohei.azlab
+Lab4Server.ryohei.azlab
 ```
