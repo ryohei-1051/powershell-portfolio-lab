@@ -43,7 +43,7 @@ From the lab folder:
 
 ```powershell
 cd .\labs\04-win-service-health\
-
+```
 # 1) Connectivity-only (WinRM/CIM session validation)
 .\scripts\service_health.ps1 -ConnectivityOnly -Verbose
 
