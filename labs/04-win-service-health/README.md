@@ -52,7 +52,7 @@ cd .\labs\04-win-service-health\
 ```
 
 ## Notes
-- `-ConnectivityOnly` validates connectivity and exports the status report.
+- `-ConnectivityOnly` validates connectivity only and exports the status report.
 - The issues report may be empty because service collection is skipped.
 
 ## Interpretation (important)
