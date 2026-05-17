@@ -43,12 +43,13 @@ From the lab folder:
 
 ```powershell
 cd .\labs\04-win-service-health\
-```
+
 # 1) Connectivity-only (WinRM/CIM session validation)
 .\scripts\service_health.ps1 -ConnectivityOnly -Verbose
 
 # 2) Full run (collect Win32_Service + export reports)
 .\scripts\service_health.ps1 -Verbose
+```
 
 ## Notes
 - `-ConnectivityOnly` validates connectivity and exports the status report.
