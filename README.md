@@ -39,7 +39,7 @@ powershell-lab/
 ## Labs Index
 
 ### Active Directory
-- **01-ad-bulk-users**  
+- **01-ad-bulk-users** *(completed)* 
   Bulk create/delete AD users from CSV (template-driven, existence checks, `-WhatIf` recommended)
 
 - **02-ad-group-management** *(completed)*  
@@ -49,10 +49,10 @@ powershell-lab/
   Offboarding workflow: disable account + move OU + optional group cleanup + reporting
 
 ### Windows Operations
-- **04-win-service-health** *(completed)*  
+- **04-win-service-health** *(planned)*  
   Report stopped services that should be running (StartType=Automatic)
 
-- **05-win-local-admins-audit** *(completed)*  
+- **05-win-local-admins-audit** *(planned)*  
   Audit Local Administrators group membership
 
 - **06-win-software-inventory** *(planned)*  
