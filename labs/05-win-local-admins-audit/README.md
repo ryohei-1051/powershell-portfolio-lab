@@ -51,6 +51,7 @@ cd .\labs\05-win-local-admins-audit\
 ```
 
 ### Optional: run with explicit credentials
+Use this if Kerberos/your current session doesn’t have enough rights.
 ```powershell
 $cred = Get-Credential
 .\scripts\local_admins_audit.ps1 -Credential $cred -Verbose
