@@ -19,11 +19,6 @@ Each lab is self-contained under `labs/` with:
 powershell-lab/
   labs/
     01-ad-bulk-users/
-      scripts/
-      data/
-      reports/
-      screenshots/
-      README.md
     02-ad-group-management/
     03-ad-offboarding-soft-delete/
     04-win-service-health/
@@ -49,10 +44,10 @@ powershell-lab/
   Offboarding workflow: disable account + move OU + optional group cleanup + reporting
 
 ### Windows Operations
-- **04-win-service-health** *(planned)*  
+- **04-win-service-health** *(completed)*  
   Report stopped services that should be running (StartType=Automatic)
 
-- **05-win-local-admins-audit** *(planned)*  
+- **05-win-local-admins-audit** *(completed)*  
   Audit Local Administrators group membership
 
 - **06-win-software-inventory** *(planned)*  
