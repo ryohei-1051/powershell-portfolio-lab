@@ -107,7 +107,7 @@ foreach ($c in $computers) {
     try {
         # Invoke command (with optional credential)
         $result = if ($Credential) {
-            Invoke-Command -ComputerName $c -Credential $Credential -ScriptBlock $sb -ErrorAction Stop
+            Invoke-Command -ComputerName $c -Credential $Credential -ScriptBlock $sb -ArgumentList $c -ErrorAction Stop
         } else {
             Invoke-Command -ComputerName $c -ScriptBlock $sb -ArgumentList $c -ErrorAction Stop
         }
@@ -145,6 +145,10 @@ if (-not $ConnectivityOnly) {
     Write-Host "Members report saved: $membersPath"
 } else {
     Write-Host "ConnectivityOnly: skipping members export"
+}
+
+if (-not $ConnectivityOnly) {
+    Write-Host ("Total members rows:  {0}" -f (($allMembers | Measure-Object).Count))
 }
 
 $hostStatus | Export-Csv -Path $statusPath -NoTypeInformation
