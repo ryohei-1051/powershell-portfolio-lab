@@ -32,7 +32,7 @@ Test-WSMan -ComputerName <TARGET>
 ## CSV input
 `data/computers.template.csv`
 
-```powershell
+```csv
 ComputerName
 CLIENT1.ryohei.azlab
 Lab4Server.ryohei.azlab
