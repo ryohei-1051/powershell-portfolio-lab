@@ -1,1 +1,3 @@
-
+!.gitignore
+!sample-computer-status.csv
+!sample-local-admins-members.csv
