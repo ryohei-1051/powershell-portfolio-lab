@@ -96,16 +96,3 @@ Planned improvements across labs:
 ## Disclaimer
 
 Educational/lab use only. Always follow organizational security policies when handling identities and credentials.
-
----
-
-## What to Do Next
-
-1) Move your current files into:
-- `labs/01-ad-bulk-users/scripts/`
-- `labs/01-ad-bulk-users/data/`
-
-2) Put your current detailed instructions into:
-- `labs/01-ad-bulk-users/README.md`
-
-3) Keep the root `README.md` as the index above.
