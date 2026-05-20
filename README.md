@@ -9,7 +9,7 @@ Each lab is self-contained under `labs/` with:
 - a dedicated `README.md` with instructions
 
 > Note: This repo uses placeholders such as `example.local` in templates for general use.  
-> In my personal lab environment, I run these labs in the `ryohei.lab` domain.
+> In my personal lab environment, I run these labs in the `ryohei.azlab` domain.
 
 ---
 
@@ -42,17 +42,17 @@ powershell-lab/
 - **01-ad-bulk-users**  
   Bulk create/delete AD users from CSV (template-driven, existence checks, `-WhatIf` recommended)
 
-- **02-ad-group-management** *(planned)*  
+- **02-ad-group-management** *(completed)*  
   Bulk add/remove users to/from AD groups (CSV-driven)
 
-- **03-ad-offboarding-soft-delete** *(planned)*  
+- **03-ad-offboarding-soft-delete** *(completed)*  
   Offboarding workflow: disable account + move OU + optional group cleanup + reporting
 
 ### Windows Operations
-- **04-win-service-health** *(planned)*  
+- **04-win-service-health** *(completed)*  
   Report stopped services that should be running (StartType=Automatic)
 
-- **05-win-local-admins-audit** *(planned)*  
+- **05-win-local-admins-audit** *(completed)*  
   Audit Local Administrators group membership
 
 - **06-win-software-inventory** *(planned)*  
