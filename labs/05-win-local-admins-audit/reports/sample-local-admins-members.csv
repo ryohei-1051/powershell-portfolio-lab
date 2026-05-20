@@ -1,0 +1,6 @@
+"Target","ComputerName","GroupName","MemberName","ObjectClass","PrincipalSource","Sid"
+"CLIENT1.ryohei.azlab","CLIENT1","Administrators","CLIENT1\Administrator","User","Local","S-1-5-21-1080339370-1671940754-3053211365-500"
+"CLIENT1.ryohei.azlab","CLIENT1","Administrators","CLIENT1\spadmin","User","Local","S-1-5-21-1080339370-1671940754-3053211365-1001"
+"CLIENT1.ryohei.azlab","CLIENT1","Administrators","RYOHEI\Domain Admins","Group","ActiveDirectory","S-1-5-21-2170589434-466142883-4292295200-512"
+"Lab4Server.ryohei.azlab","LAB4SERVER","Administrators","LAB4SERVER\Administrator","User","Local","S-1-5-21-3511338394-2063830464-3657058271-500"
+"Lab4Server.ryohei.azlab","LAB4SERVER","Administrators","RYOHEI\Domain Admins","Group","ActiveDirectory","S-1-5-21-2170589434-466142883-4292295200-512"
