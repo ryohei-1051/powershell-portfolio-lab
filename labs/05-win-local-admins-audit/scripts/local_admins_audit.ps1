@@ -52,16 +52,18 @@ $hostStatus = @()
 
 # Script block executed on each target
 $sb = {
-    $adminSid = "S-1-5-32-544"  # Built-in Administrators group SID
+    param([string]$Target)
+
+    $adminSid = "S-1-5-32-544"
     $grp = Get-CimInstance -ClassName Win32_Group -Filter "SID='$adminSid'" -ErrorAction Stop
     $groupName = $grp.Name
 
-    # Get-LocalGroupMember exists on Win10/11 and Server 2016+ (PS 5.1)
     $members = Get-LocalGroupMember -Group $groupName -ErrorAction Stop
 
     $output = foreach ($m in $members) {
         [pscustomobject]@{
-            ComputerName    = $env:COMPUTERNAME
+            Target          = $Target              # from CSV (FQDN)
+            ComputerName    = $env:COMPUTERNAME    # actual hostname
             GroupName       = $groupName
             MemberName      = $m.Name
             ObjectClass     = $m.ObjectClass
@@ -70,10 +72,11 @@ $sb = {
         }
     }
 
-    # Return both group name and members
     [pscustomobject]@{
-        GroupName = $groupName
-        Members   = $output
+        Target       = $Target
+        Hostname     = $env:COMPUTERNAME
+        GroupName    = $groupName
+        Members      = $output
     }
 }
 
@@ -106,7 +109,7 @@ foreach ($c in $computers) {
         $result = if ($Credential) {
             Invoke-Command -ComputerName $c -Credential $Credential -ScriptBlock $sb -ErrorAction Stop
         } else {
-            Invoke-Command -ComputerName $c -ScriptBlock $sb -ErrorAction Stop
+            Invoke-Command -ComputerName $c -ScriptBlock $sb -ArgumentList $c -ErrorAction Stop
         }
 
         # Collect members
@@ -120,6 +123,7 @@ foreach ($c in $computers) {
             ComputerName = $c
             Status       = "Success"
             Error        = ""
+            Hostname     = $result.Hostname
             GroupName    = $result.GroupName
             MembersCount = $memberCount
             Timestamp    = Get-Date
@@ -136,9 +140,12 @@ foreach ($c in $computers) {
 }
 
 # Export reports
-$allMembers | Export-Csv -Path $membersPath -NoTypeInformation
-$hostStatus | Export-Csv -Path $statusPath -NoTypeInformation
+if (-not $ConnectivityOnly) {
+    $allMembers | Export-Csv -Path $membersPath -NoTypeInformation
+    Write-Host "Members report saved: $membersPath"
+} else {
+    Write-Host "ConnectivityOnly: skipping members export"
+}
 
-Write-Host "Members report saved: $membersPath"
+$hostStatus | Export-Csv -Path $statusPath -NoTypeInformation
 Write-Host "Status report saved:  $statusPath"
-Write-Host ("Total members rows:  {0}" -f ($allMembers | Measure-Object).Count)
