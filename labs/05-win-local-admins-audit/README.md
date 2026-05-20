@@ -49,7 +49,8 @@ cd .\labs\05-win-local-admins-audit\
 # 2) Full run (collect local admins membership)
 .\scripts\local_admins_audit.ps1 -Verbose
 ```
-# Optional: run with explicit credentials
+
+### Optional: run with explicit credentials
 ```powershell
 $cred = Get-Credential
 .\scripts\local_admins_audit.ps1 -Credential $cred -Verbose
