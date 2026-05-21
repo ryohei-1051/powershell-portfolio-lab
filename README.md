@@ -47,7 +47,7 @@ powershell-lab/
 - **04-win-service-health** *(completed)*  
   Report stopped services that should be running (StartType=Automatic)
 
-- **05-win-local-admins-audit** *(completed)*  
+- **05-win-local-admins-audit** *(planned)*  
   Audit Local Administrators group membership
 
 - **06-win-software-inventory** *(planned)*  
