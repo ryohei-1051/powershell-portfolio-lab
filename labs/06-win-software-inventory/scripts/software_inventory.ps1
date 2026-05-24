@@ -62,66 +62,47 @@ $sb = {
         [bool]$IncludeSensitiveFields
     )
 
-    function Get-UninstallApps {
-        param([string]$RegPath, [string]$Arch)
+function Get-UninstallApps {
+  param([string]$BaseKey, [string]$Arch)
 
-        $items = @()
-        try {
-            $keys = Get-ItemProperty -Path $RegPath -ErrorAction Stop
-            foreach ($k in $keys) {
-                $name = [string]$k.DisplayName
-                if ([string]::IsNullOrWhiteSpace($name)) { continue }
+  $items = @()
 
-                # Skip system components / parents where possible
-                if ($k.SystemComponent -eq 1) { continue }
-                if (-not [string]::IsNullOrWhiteSpace([string]$k.ParentKeyName)) { continue }
+  $subkeys = Get-ChildItem -Path $BaseKey -ErrorAction SilentlyContinue
+  foreach ($sk in $subkeys) {
+    try {
+      $k = Get-ItemProperty -Path $sk.PSPath -ErrorAction Stop
 
-                $publisher = [string]$k.Publisher
-                $version   = [string]$k.DisplayVersion
-                $installDt = [string]$k.InstallDate
+      $name = [string]$k.DisplayName
+      if ([string]::IsNullOrWhiteSpace($name)) { continue }
 
-                # Noise filtering (pattern applies to DisplayName)
-                $skip = $false
-                foreach ($p in $ExcludePattern) {
-                    if ($name -like $p) { $skip = $true; break }
-                }
-                if ($skip) { continue }
+      # Keep these two filters; they remove a lot of junk but shouldn’t wipe everything
+      if ($k.SystemComponent -eq 1) { continue }
 
-                $obj = [pscustomobject]@{
-                    Target       = $Target
-                    ComputerName = $env:COMPUTERNAME
-                    Architecture = $Arch
-                    DisplayName  = $name
-                    DisplayVersion = $version
-                    Publisher    = $publisher
-                    InstallDate  = $installDt
-                }
+      # OPTIONAL: comment this out if it removes too much in your environment
+      # if (-not [string]::IsNullOrWhiteSpace([string]$k.ParentKeyName)) { continue }
 
-                if ($IncludeSensitiveFields) {
-                    $obj | Add-Member -NotePropertyName InstallLocation -NotePropertyValue ([string]$k.InstallLocation) -Force
-                    $obj | Add-Member -NotePropertyName UninstallString  -NotePropertyValue ([string]$k.UninstallString)  -Force
-                }
-
-                $items += $obj
-            }
-        } catch {
-            # If a hive/path doesn't exist, just return nothing
-        }
-        return $items
+      $items += [pscustomobject]@{
+        Target         = $Target
+        ComputerName   = $env:COMPUTERNAME
+        Architecture   = $Arch
+        DisplayName    = $name
+        DisplayVersion = [string]$k.DisplayVersion
+        Publisher      = [string]$k.Publisher
+        InstallDate    = [string]$k.InstallDate
+      }
+    } catch {
+      # ignore bad keys, keep going
     }
+  }
 
-    $apps = @()
-
-    # 64-bit uninstall keys
-    $apps += Get-UninstallApps -RegPath "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" -Arch "x64"
-    # 32-bit apps on 64-bit OS
-    $apps += Get-UninstallApps -RegPath "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" -Arch "x86"
-
-    # de-dup (DisplayName + Version + Publisher)
-    $apps = $apps | Sort-Object DisplayName,DisplayVersion,Publisher -Unique
-
-    $apps
+  $items
 }
+
+$apps = @()
+$apps += Get-UninstallApps "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" "x64"
+$apps += Get-UninstallApps "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall" "x86"
+
+{
 
 foreach ($c in $computers) {
     Write-Verbose "Processing: $c"
