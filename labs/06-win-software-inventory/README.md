@@ -22,3 +22,52 @@ Run on each target (Admin):
 ```powershell
 Enable-PSRemoting -Force
 ```
+
+From the collector:
+```powershell
+Test-WSMan -ComputerName <TARGET>
+```
+
+## CSV input
+`data/computers.template.csv`
+```csv
+ComputerName
+CLIENT1.ryohei.azlab
+Lab4Server.ryohei.azlab
+```
+## Run
+From the lab folder:
+```powershell
+cd .\labs\06-win-software-inventory\
+
+# 1) Connectivity-only
+.\scripts\software_inventory.ps1 -ConnectivityOnly -Verbose
+
+# 2) Full inventory
+.\scripts\software_inventory.ps1 -Verbose
+```
+# Optional: run with explicit credentials
+```powershell
+$cred = Get-Credential
+.\scripts\software_inventory.ps1 -Credential $cred -Verbose
+```
+
+## Output
+Two CSV reports are generated in `reports/`:
+- `software_inventory_YYYYMMDD_HHMMSS.csv`
+- `computer_status_YYYYMMDD_HHMMSS.csv`
+
+## Interpretation
+- Inventory can include software that is expected to be present (drivers, components, vendor tools).
+- Not every entry is "actionable"—treat the report as a visibility tool.
+
+## Public sharing note
+Software inventories may reveal environment-specific tools. If publishing sample outputs:
+- commit only a small sample report, and/or
+- exclude sensitive tools, and/or
+- avoid enabling `-IncludeSensitiveFields`.
+
+## Evidence (screenshots)
+Script run output showing report paths
+- Opened `computer_status_*.csv`
+- Opened `software_inventory_*.csv`
