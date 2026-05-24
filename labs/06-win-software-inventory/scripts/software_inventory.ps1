@@ -62,101 +62,62 @@ $sb = {
         [bool]$IncludeSensitiveFields
     )
 
-function Get-UninstallApps {
-  param([string]$BaseKey, [string]$Arch)
+    function Get-UninstallApps {
+        param([string]$BaseKey, [string]$Arch)
 
-  $items = @()
+        $items = @()
+        $subkeys = Get-ChildItem -Path $BaseKey -ErrorAction SilentlyContinue
 
-  $subkeys = Get-ChildItem -Path $BaseKey -ErrorAction SilentlyContinue
-  foreach ($sk in $subkeys) {
-    try {
-      $k = Get-ItemProperty -Path $sk.PSPath -ErrorAction Stop
+        foreach ($sk in $subkeys) {
+            try {
+                $k = Get-ItemProperty -Path $sk.PSPath -ErrorAction Stop
 
-      $name = [string]$k.DisplayName
-      if ([string]::IsNullOrWhiteSpace($name)) { continue }
+                $name = [string]$k.DisplayName
+                if ([string]::IsNullOrWhiteSpace($name)) { continue }
 
-      # Keep these two filters; they remove a lot of junk but shouldn’t wipe everything
-      if ($k.SystemComponent -eq 1) { continue }
+                # Skip some noise
+                if ($k.SystemComponent -eq 1) { continue }
 
-      # OPTIONAL: comment this out if it removes too much in your environment
-      # if (-not [string]::IsNullOrWhiteSpace([string]$k.ParentKeyName)) { continue }
+                # Optional: this can remove too much in some environments
+                # if (-not [string]::IsNullOrWhiteSpace([string]$k.ParentKeyName)) { continue }
 
-      $items += [pscustomobject]@{
-        Target         = $Target
-        ComputerName   = $env:COMPUTERNAME
-        Architecture   = $Arch
-        DisplayName    = $name
-        DisplayVersion = [string]$k.DisplayVersion
-        Publisher      = [string]$k.Publisher
-        InstallDate    = [string]$k.InstallDate
-      }
-    } catch {
-      # ignore bad keys, keep going
-    }
-  }
+                # Apply exclude patterns (DisplayName)
+                $skip = $false
+                foreach ($p in $ExcludePattern) {
+                    if ($name -like $p) { $skip = $true; break }
+                }
+                if ($skip) { continue }
 
-  $items
-}
+                $obj = [pscustomobject]@{
+                    Target         = $Target
+                    ComputerName   = $env:COMPUTERNAME
+                    Architecture   = $Arch
+                    DisplayName    = $name
+                    DisplayVersion = [string]$k.DisplayVersion
+                    Publisher      = [string]$k.Publisher
+                    InstallDate    = [string]$k.InstallDate
+                }
 
-$apps = @()
-$apps += Get-UninstallApps "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" "x64"
-$apps += Get-UninstallApps "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall" "x86"
+                if ($IncludeSensitiveFields) {
+                    $obj | Add-Member -NotePropertyName InstallLocation -NotePropertyValue ([string]$k.InstallLocation) -Force
+                    $obj | Add-Member -NotePropertyName UninstallString  -NotePropertyValue ([string]$k.UninstallString)  -Force
+                }
 
-{
-
-foreach ($c in $computers) {
-    Write-Verbose "Processing: $c"
-
-    if ($ConnectivityOnly) {
-        try {
-            Test-WSMan -ComputerName $c -ErrorAction Stop | Out-Null
-            $hostStatus += [pscustomobject]@{
-                ComputerName = $c
-                Status       = "Connected"
-                Error        = ""
-                Timestamp    = Get-Date
-            }
-        } catch {
-            $hostStatus += [pscustomobject]@{
-                ComputerName = $c
-                Status       = "Failed"
-                Error        = $_.Exception.Message
-                Timestamp    = Get-Date
+                $items += $obj
+            } catch {
+                # ignore bad keys and continue
             }
         }
-        continue
+
+        $items
     }
 
-    try {
-        $result = if ($Credential) {
-            Invoke-Command -ComputerName $c -Credential $Credential -ScriptBlock $sb -ArgumentList $c,$ExcludePattern,$IncludeSensitiveFields.IsPresent -ErrorAction Stop
-        } else {
-            Invoke-Command -ComputerName $c -ScriptBlock $sb -ArgumentList $c,$ExcludePattern,$IncludeSensitiveFields.IsPresent -ErrorAction Stop
-        }
+    $apps = @()
+    $apps += Get-UninstallApps "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" "x64"
+    $apps += Get-UninstallApps "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall" "x86"
 
-        $count = ($result | Measure-Object).Count
-        if ($count -gt 0) { $allApps += $result }
-
-        # Capture hostname if any records exist; otherwise leave blank
-        $hostname = ""
-        if ($count -gt 0) { $hostname = $result[0].ComputerName }
-
-        $hostStatus += [pscustomobject]@{
-            ComputerName = $c
-            Status       = "Success"
-            Error        = ""
-            Hostname     = $hostname
-            AppsFound    = $count
-            Timestamp    = Get-Date
-        }
-    } catch {
-        $hostStatus += [pscustomobject]@{
-            ComputerName = $c
-            Status       = "Failed"
-            Error        = $_.Exception.Message
-            Timestamp    = Get-Date
-        }
-    }
+    # de-dup
+    $apps | Sort-Object DisplayName,DisplayVersion,Publisher -Unique
 }
 
 # Export
