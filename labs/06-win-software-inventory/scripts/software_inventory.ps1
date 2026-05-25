@@ -112,6 +112,61 @@ $sb = {
         $items
     }
 
+foreach ($c in $computers) {
+    Write-Verbose "Processing: $c"
+
+    if ($ConnectivityOnly) {
+        try {
+            Test-WSMan -ComputerName $c -ErrorAction Stop | Out-Null
+            $hostStatus += [pscustomobject]@{
+                ComputerName = $c
+                Status       = "Connected"
+                Error        = ""
+                Timestamp    = Get-Date
+            }
+        } catch {
+            $hostStatus += [pscustomobject]@{
+                ComputerName = $c
+                Status       = "Failed"
+                Error        = $_.Exception.Message
+                Timestamp    = Get-Date
+            }
+        }
+        continue
+    }
+
+    try {
+        $result = if ($Credential) {
+            Invoke-Command -ComputerName $c -Credential $Credential -ScriptBlock $sb `
+                -ArgumentList $c,$ExcludePattern,$IncludeSensitiveFields.IsPresent -ErrorAction Stop
+        } else {
+            Invoke-Command -ComputerName $c -ScriptBlock $sb `
+                -ArgumentList $c,$ExcludePattern,$IncludeSensitiveFields.IsPresent -ErrorAction Stop
+        }
+
+        $count = ($result | Measure-Object).Count
+        if ($count -gt 0) { $allApps += $result }
+
+        $hostname = if ($count -gt 0) { $result[0].ComputerName } else { "" }
+
+        $hostStatus += [pscustomobject]@{
+            ComputerName = $c
+            Status       = "Success"
+            Error        = ""
+            Hostname     = $hostname
+            AppsFound    = $count
+            Timestamp    = Get-Date
+        }
+    } catch {
+        $hostStatus += [pscustomobject]@{
+            ComputerName = $c
+            Status       = "Failed"
+            Error        = $_.Exception.Message
+            Timestamp    = Get-Date
+        }
+    }
+}
+
     $apps = @()
     $apps += Get-UninstallApps "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" "x64"
     $apps += Get-UninstallApps "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall" "x86"
