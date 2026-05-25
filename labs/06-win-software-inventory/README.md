@@ -60,6 +60,7 @@ Two CSV reports are generated in `reports/`:
 ## Interpretation
 - Inventory can include software that is expected to be present (drivers, components, vendor tools).
 - Not every entry is "actionable"—treat the report as a visibility tool.
+- This inventory is HKLM-based (machine-wide); per-user installs (HKCU) and some Store apps may not appear.
 
 ## Public sharing note
 Software inventories may reveal environment-specific tools. If publishing sample outputs:
