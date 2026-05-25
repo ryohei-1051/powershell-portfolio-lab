@@ -54,14 +54,14 @@ cd .\labs\04-win-service-health\
 .\scripts\service_health.ps1 -Verbose
 ```
 
-```PowerShell
+```powershell
 # Lab 05: local admins audit
 cd .\labs\05-win-local-admins-audit\
 .\scripts\local_admins_audit.ps1 -ConnectivityOnly -Verbose
 .\scripts\local_admins_audit.ps1 -Verbose
 ```
 
-```PowerShell
+```powershell
 # Lab 06: software inventory
 cd .\labs\06-win-software-inventory\
 .\scripts\software_inventory.ps1 -ConnectivityOnly -Verbose
