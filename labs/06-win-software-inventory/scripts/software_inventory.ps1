@@ -176,10 +176,12 @@ foreach ($c in $computers) {
 }
 
 # Export
+# Inventory export (clean columns)
 $allApps |
   Select-Object Target,ComputerName,Architecture,DisplayName,DisplayVersion,Publisher,InstallDate |
   Export-Csv -Path $invPath -NoTypeInformation
 
+# Status export (clean columns)
 $hostStatus |
   Select-Object ComputerName,Status,Hostname,AppsFound,Error,Timestamp |
   Export-Csv -Path $statusPath -NoTypeInformation
