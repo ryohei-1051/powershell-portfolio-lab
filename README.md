@@ -31,6 +31,8 @@ powershell-portfolio-lab/
   .gitignore
 ```
 
+---
+
 ## Labs Index
 
 ### Active Directory
