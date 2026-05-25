@@ -1,5 +1,4 @@
 # PowerShell Lab Repository
-
 A collection of hands-on PowerShell labs for **Systems Administrator / Infrastructure** skill building.
 
 Each lab is self-contained under `labs/` with:
@@ -14,7 +13,6 @@ Each lab is self-contained under `labs/` with:
 ---
 
 ## Repository Structure
-
 ```text
 <repo-root>/
   labs/
@@ -37,24 +35,19 @@ Each lab is self-contained under `labs/` with:
 - **01-ad-bulk-users** *(completed)* 
   Bulk create/delete AD users from CSV (template-driven, existence checks, `-WhatIf` recommended)
 `labs/01-ad-bulk-users/README.md`
-
 - **02-ad-group-management** *(completed)*  
   Bulk add/remove users to/from AD groups (CSV-driven)
 `labs/02-ad-group-management/README.md`
-
 - **03-ad-offboarding-soft-delete** *(completed)*  
   Offboarding workflow: disable account + move OU + optional group cleanup + reporting
 `labs/03-ad-offboarding-soft-delete/README.md`
-
 ### Windows Operations
 - **04-win-service-health** *(completed)*  
   Report stopped services that should be running (StartType=Automatic)
 `labs/04-win-service-health/README.md`
-
 - **05-win-local-admins-audit** *(completed)*  
   Audit Local Administrators group membership
 `labs/05-win-local-admins-audit/README.md`
-
 - **06-win-software-inventory** *(completed)*  
   Export installed software inventory (local first; remote later)
   `labs/06-win-software-inventory/README.md`
@@ -89,7 +82,6 @@ cd .\labs\06-win-software-inventory\
 ---
 
 ## Requirements
-
 Some labs require different permissions, but commonly:
 - Windows PowerShell **5.1+** (or PowerShell 7+ depending on the lab)
 - Admin privileges may be required for OS-level checks
@@ -99,7 +91,6 @@ Some labs require different permissions, but commonly:
 ---
 
 ## Public-Safe Data Policy
-
 To avoid exposing real data:
 - Use `*.template.csv` for examples
 - Do not commit real passwords, tenant details, or production data
@@ -108,7 +99,6 @@ To avoid exposing real data:
 ---
 
 ## Reports Hygiene
-
 Most labs generate timestamped outputs in `reports/`.
 To keep the repo clean:
 - Only `sample-*.csv` reports are committed
@@ -117,7 +107,6 @@ To keep the repo clean:
 ---
 
 ## How to Use This Repo
-
 1) Pick a lab under `labs/`  
 2) Read the lab README  
 3) Run the script(s) from that lab folder  
@@ -126,11 +115,10 @@ To keep the repo clean:
 ---
 
 ## Roadmap
-
 Planned improvements across labs:
-- Consistent reporting (CSV output: Created/Skipped/Failed + reason + timestamp)
+- Consistent reporting schema (Created/Skipped/Failed + reason + timestamp)
 - Shared helper functions in `shared/helpers/common.ps1`
-- More input validation and safer defaults (`-WhatIf`, soft delete, etc.)
+- More input validation and safer defaults (`-WhatIf`, soft delete patterns, clearer pre-flight checks)
 
 ---
 
