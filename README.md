@@ -1,4 +1,5 @@
 # PowerShell Lab Repository
+
 A collection of hands-on PowerShell labs for **Systems Administrator / Infrastructure** skill building.
 
 Each lab is self-contained under `labs/` with:
@@ -13,8 +14,9 @@ Each lab is self-contained under `labs/` with:
 ---
 
 ## Repository Structure
+
 ```text
-<repo-root>/
+powershell-portfolio-lab/
   labs/
     01-ad-bulk-users/
     02-ad-group-management/
