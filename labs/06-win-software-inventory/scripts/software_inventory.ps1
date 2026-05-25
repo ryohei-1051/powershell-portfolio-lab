@@ -176,8 +176,13 @@ foreach ($c in $computers) {
 }
 
 # Export
-$allApps | Export-Csv -Path $invPath -NoTypeInformation
-$hostStatus | Export-Csv -Path $statusPath -NoTypeInformation
+$allApps |
+  Select-Object Target,ComputerName,Architecture,DisplayName,DisplayVersion,Publisher,InstallDate |
+  Export-Csv -Path $invPath -NoTypeInformation
+
+$hostStatus |
+  Select-Object ComputerName,Status,Hostname,AppsFound,Error,Timestamp |
+  Export-Csv -Path $statusPath -NoTypeInformation
 
 Write-Host "Inventory report saved: $invPath"
 Write-Host "Status report saved:    $statusPath"
