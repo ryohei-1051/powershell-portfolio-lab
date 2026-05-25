@@ -34,33 +34,20 @@ powershell-portfolio-lab/
 ## Labs Index
 
 ### Active Directory
-- **01-ad-bulk-users** *(completed)* 
-  Bulk create/delete AD users from CSV (template-driven, existence checks, `-WhatIf` recommended)
-`labs/01-ad-bulk-users/README.md`
-- **02-ad-group-management** *(completed)*  
-  Bulk add/remove users to/from AD groups (CSV-driven)
-`labs/02-ad-group-management/README.md`
-- **03-ad-offboarding-soft-delete** *(completed)*  
-  Offboarding workflow: disable account + move OU + optional group cleanup + reporting
-`labs/03-ad-offboarding-soft-delete/README.md`
-### Windows Operations
-- **04-win-service-health** *(completed)*  
-  Report stopped services that should be running (StartType=Automatic)
-`labs/04-win-service-health/README.md`
-- **05-win-local-admins-audit** *(completed)*  
-  Audit Local Administrators group membership
-`labs/05-win-local-admins-audit/README.md`
-- **06-win-software-inventory** *(completed)*  
-  Export installed software inventory (local first; remote later)
-  `labs/06-win-software-inventory/README.md`
+- **01-ad-bulk-users** *(completed)* — Bulk create/delete AD users from CSV (template-driven, existence checks, `-WhatIf` recommended). ([Lab README](labs/01-ad-bulk-users/README.md))
+- **02-ad-group-management** *(completed)* — Bulk add/remove users to/from AD groups from CSV (reporting included). ([Lab README](labs/02-ad-group-management/README.md))
+- **03-ad-offboarding-soft-delete** *(completed)* — Offboarding workflow: disable account + move to Disabled Users OU + optional group cleanup + reporting. ([Lab README](labs/03-ad-offboarding-soft-delete/README.md))
 
-Each lab has its own README: `labs/<lab-name>/README.md`
+### Windows Operations
+- **04-win-service-health** *(completed)* — Multi-machine service health reporting (Auto-start services not running) via CIM over WinRM + tuning. ([Lab README](labs/04-win-service-health/README.md))
+- **05-win-local-admins-audit** *(completed)* — Multi-machine local Administrators audit via WinRM with localization-safe group resolution (SID-based). ([Lab README](labs/05-win-local-admins-audit/README.md))
+- **06-win-software-inventory** *(completed)* — Multi-machine software inventory via WinRM using registry uninstall keys (HKLM x64 + WOW6432Node). ([Lab README](labs/06-win-software-inventory/README.md))
 
 ---
-## Quick Start
-Example (WinRM connectivity + full run):
 
-```PowerShell
+## Quick Start
+
+```powershell
 # Lab 04: service health
 cd .\labs\04-win-service-health\
 .\scripts\service_health.ps1 -ConnectivityOnly -Verbose
