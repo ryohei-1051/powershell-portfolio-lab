@@ -1,12 +1,12 @@
 # PowerShell Lab Repository
 
-This repository is a collection of hands-on PowerShell labs for Systems Administrator / Infrastructure skill building.
+A collection of hands-on PowerShell labs for **Systems Administrator / Infrastructure** skill building.
 
 Each lab is self-contained under `labs/` with:
 - scripts
 - template data (public-safe)
 - sample reports/output
-- a dedicated `README.md` with instructions
+- a dedicated `README.md` with instructions and evidence
 
 > Note: This repo uses placeholders such as `example.local` in templates for general use.  
 > In my personal lab environment, I run these labs in the `ryohei.azlab` domain.
@@ -16,7 +16,7 @@ Each lab is self-contained under `labs/` with:
 ## Repository Structure
 
 ```text
-powershell-lab/
+<repo-root>/
   labs/
     01-ad-bulk-users/
     02-ad-group-management/
@@ -36,24 +36,55 @@ powershell-lab/
 ### Active Directory
 - **01-ad-bulk-users** *(completed)* 
   Bulk create/delete AD users from CSV (template-driven, existence checks, `-WhatIf` recommended)
+`labs/01-ad-bulk-users/README.md`
 
 - **02-ad-group-management** *(completed)*  
   Bulk add/remove users to/from AD groups (CSV-driven)
+`labs/02-ad-group-management/README.md`
 
 - **03-ad-offboarding-soft-delete** *(completed)*  
   Offboarding workflow: disable account + move OU + optional group cleanup + reporting
+`labs/03-ad-offboarding-soft-delete/README.md`
 
 ### Windows Operations
 - **04-win-service-health** *(completed)*  
   Report stopped services that should be running (StartType=Automatic)
+`labs/04-win-service-health/README.md`
 
 - **05-win-local-admins-audit** *(completed)*  
   Audit Local Administrators group membership
+`labs/05-win-local-admins-audit/README.md`
 
-- **06-win-software-inventory** *(planned)*  
+- **06-win-software-inventory** *(completed)*  
   Export installed software inventory (local first; remote later)
+  `labs/06-win-software-inventory/README.md`
 
 Each lab has its own README: `labs/<lab-name>/README.md`
+
+---
+## Quick Start
+Example (WinRM connectivity + full run):
+
+```PowerShell
+# Lab 04: service health
+cd .\labs\04-win-service-health\
+.\scripts\service_health.ps1 -ConnectivityOnly -Verbose
+.\scripts\service_health.ps1 -Verbose
+```
+
+```PowerShell
+# Lab 05: local admins audit
+cd .\labs\05-win-local-admins-audit\
+.\scripts\local_admins_audit.ps1 -ConnectivityOnly -Verbose
+.\scripts\local_admins_audit.ps1 -Verbose
+```
+
+```PowerShell
+# Lab 06: software inventory
+cd .\labs\06-win-software-inventory\
+.\scripts\software_inventory.ps1 -ConnectivityOnly -Verbose
+.\scripts\software_inventory.ps1 -Verbose
+```
 
 ---
 
@@ -63,6 +94,7 @@ Some labs require different permissions, but commonly:
 - Windows PowerShell **5.1+** (or PowerShell 7+ depending on the lab)
 - Admin privileges may be required for OS-level checks
 - For AD labs: **RSAT / ActiveDirectory** module + domain permissions
+- For multi-machine Windows labs: **WinRM** enabled and reachable on targets
 
 ---
 
@@ -72,6 +104,15 @@ To avoid exposing real data:
 - Use `*.template.csv` for examples
 - Do not commit real passwords, tenant details, or production data
 - Use `.gitignore` to block real CSVs and logs
+
+---
+
+## Reports Hygiene
+
+Most labs generate timestamped outputs in `reports/`.
+To keep the repo clean:
+- Only `sample-*.csv` reports are committed
+- Timestamped reports are ignored via each lab’s `reports/.gitignore`
 
 ---
 
