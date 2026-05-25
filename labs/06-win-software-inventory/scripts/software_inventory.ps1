@@ -76,7 +76,7 @@ $sb = {
                 if ([string]::IsNullOrWhiteSpace($name)) { continue }
 
                 # Skip some noise
-                if ($k.SystemComponent -eq 1) { continue }
+                # if ($k.SystemComponent -eq 1) { continue }
 
                 # Optional: this can remove too much in some environments
                 # if (-not [string]::IsNullOrWhiteSpace([string]$k.ParentKeyName)) { continue }
@@ -116,9 +116,9 @@ $sb = {
     $apps += Get-UninstallApps "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" "x64"
     $apps += Get-UninstallApps "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall" "x86"
 
-    # de-dup
+    # IMPORTANT: return objects from the scriptblock
     $apps | Sort-Object DisplayName,DisplayVersion,Publisher -Unique
-}
+    }
 
 # Export
 $allApps | Export-Csv -Path $invPath -NoTypeInformation
