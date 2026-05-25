@@ -112,6 +112,14 @@ $sb = {
         $items
     }
 
+    $apps = @()
+    $apps += Get-UninstallApps "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" "x64"
+    $apps += Get-UninstallApps "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall" "x86"
+
+    # IMPORTANT: return objects from the scriptblock
+    $apps | Sort-Object DisplayName,DisplayVersion,Publisher -Unique
+    }
+
 foreach ($c in $computers) {
     Write-Verbose "Processing: $c"
 
@@ -166,14 +174,6 @@ foreach ($c in $computers) {
         }
     }
 }
-
-    $apps = @()
-    $apps += Get-UninstallApps "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" "x64"
-    $apps += Get-UninstallApps "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall" "x86"
-
-    # IMPORTANT: return objects from the scriptblock
-    $apps | Sort-Object DisplayName,DisplayVersion,Publisher -Unique
-    }
 
 # Export
 $allApps | Export-Csv -Path $invPath -NoTypeInformation
