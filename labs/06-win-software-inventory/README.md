@@ -68,6 +68,6 @@ Software inventories may reveal environment-specific tools. If publishing sample
 - avoid enabling `-IncludeSensitiveFields`.
 
 ## Evidence (screenshots)
-Script run output showing report paths
+- Script run output showing report paths
 - Opened `computer_status_*.csv`
 - Opened `software_inventory_*.csv`
