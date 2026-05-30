@@ -123,6 +123,12 @@ $sb = {
                 if (-not $obj.Workstation) { $obj.Workstation = $edata["WorkstationName"] }
                 $obj.Status      = $edata["Status"]
             }
+            4771 {
+                $obj.UserName  = $edata["TargetUserName"]
+                $obj.Domain    = $edata["TargetDomainName"]
+                $obj.SourceIp  = $edata["IpAddress"]
+                $obj.Status    = $edata["Status"]
+            }
         }
 
         [pscustomobject]$obj
