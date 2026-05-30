@@ -141,7 +141,7 @@ $sb = {
 }
 
 $startTime = (Get-Date).AddDays(-1 * $DaysBack)
-$ids = @(4625, 4740)
+$ids = @(4625, 4740, 4776, 4771)
 if ($IncludeSuccessLogons) { $ids += 4624 }
 
 foreach ($c in $computers) {
