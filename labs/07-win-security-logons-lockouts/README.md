@@ -5,6 +5,8 @@ Collect Windows Security events across multiple machines from a CSV list using W
 
 Focused events:
 - **4625** Failed logon
+- **4776** NTLM credential validation failed (common for your `net use` test)
+- **4771** Kerberos pre-authentication failed (depends on test method)
 - **4740** Account lockout (typically logged on Domain Controllers)
 
 ## Files
