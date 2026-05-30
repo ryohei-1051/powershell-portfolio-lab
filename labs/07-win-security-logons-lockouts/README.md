@@ -71,9 +71,9 @@ Three CSV reports are generated in `reports/`:
 - Treat this as a visibility + triage tool.
 
 ## Evidence (screenshots)
-Script run output showing report paths
-Opened `computer_status_*.csv`
-Opened `security_summary_*.csv` (counts by user/source)
+- Script run output showing report paths
+- Opened `computer_status_*.csv`
+- Opened `security_summary_*.csv` (counts by user/source)
 
 
 ---
