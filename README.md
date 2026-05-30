@@ -44,7 +44,7 @@ powershell-portfolio-lab/
 - **04-win-service-health** *(completed)* — Multi-machine service health reporting (Auto-start services not running) via CIM over WinRM + tuning. ([Lab README](labs/04-win-service-health/README.md))
 - **05-win-local-admins-audit** *(completed)* — Multi-machine local Administrators audit via WinRM with localization-safe group resolution (SID-based). ([Lab README](labs/05-win-local-admins-audit/README.md))
 - **06-win-software-inventory** *(completed)* — Multi-machine software inventory via WinRM using registry uninstall keys (HKLM x64 + WOW6432Node). ([Lab README](labs/06-win-software-inventory/README.md))
-
+- **07-win-security-logons-lockouts** *(completed)* — Multi-machine Security log audit via WinRM (4625/4776/4771 failures + 4740 lockouts, DC included). ([Lab README](labs/07-win-security-logons-lockouts/README.md))
 ---
 
 ## Quick Start
