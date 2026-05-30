@@ -114,6 +114,15 @@ $sb = {
                 $obj.Workstation = $edata["WorkstationName"]
                 $obj.LogonType   = $edata["LogonType"]
             }
+            4776 {
+                # NTLM credential validation
+                $obj.UserName    = $edata["TargetUserName"]
+                $obj.Domain      = $edata["TargetDomainName"]
+                # Some builds use Workstation; some use WorkstationName
+                $obj.Workstation = $edata["Workstation"]
+                if (-not $obj.Workstation) { $obj.Workstation = $edata["WorkstationName"] }
+                $obj.Status      = $edata["Status"]
+            }
         }
 
         [pscustomobject]$obj
