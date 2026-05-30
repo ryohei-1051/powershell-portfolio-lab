@@ -1,1 +1,5 @@
-
+*
+!.gitignore
+!sample-computer-status.csv
+!sample-security-events.csv
+!sample-security-summary.csv
