@@ -1,1 +1,5 @@
-
+*
+!.gitignore
+!sample-computer-status.csv
+!sample-disk-usage.csv
+!sample-critical-services.csv
