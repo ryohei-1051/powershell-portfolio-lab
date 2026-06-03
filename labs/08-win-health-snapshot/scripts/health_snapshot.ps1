@@ -40,12 +40,15 @@ $hostStatus = @()
 $diskRows   = @()
 $svcRows    = @()
 
-$sb = {
-    param([string]$Target, [string[]]$ServiceNames)
+$os = Get-CimInstance -ClassName Win32_OperatingSystem -ErrorAction Stop
 
-    # Uptime / last boot
-    $os = Get-CimInstance -ClassName Win32_OperatingSystem -ErrorAction Stop
-    $lastBoot = [System.Management.ManagementDateTimeConverter]::ToDateTime($os.LastBootUpTime)
+    $raw = $os.LastBootUpTime
+    if ($raw -is [string]) {
+        $lastBoot = [System.Management.ManagementDateTimeConverter]::ToDateTime($raw)
+    } else {
+        $lastBoot = [datetime]$raw
+    }
+
     $uptimeHours = [math]::Round(((Get-Date) - $lastBoot).TotalHours, 2)
 
     # Disk (local fixed drives)
