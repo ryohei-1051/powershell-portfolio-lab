@@ -137,11 +137,6 @@ foreach ($c in $computers) {
     }
 
     try {
-        $result = if ($Credential) {
-            Invoke-Command -ComputerName $c -Credential $Credential -ScriptBlock $sb -ArgumentList $c,$services -ErrorAction Stop
-        } else {
-            Invoke-Command -ComputerName $c -ScriptBlock $sb -ArgumentList $c,$services -ErrorAction Stop
-        }
 
         $diskRows += $result.Disks
         $svcRows  += $result.Services
