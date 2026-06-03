@@ -1,1 +1,5 @@
-
+ServiceName,Note
+WinRM,Remote management
+W32Time,Time sync
+EventLog,Windows Event Log
+LanmanServer,File/print server (Server OS)
