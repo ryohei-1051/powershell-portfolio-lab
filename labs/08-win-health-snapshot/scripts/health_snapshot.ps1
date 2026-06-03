@@ -137,29 +137,35 @@ foreach ($c in $computers) {
     }
 
     try {
+    $result = if ($Credential) {
+        Invoke-Command -ComputerName $c -Credential $Credential -ScriptBlock $sb -ArgumentList $c,$services -ErrorAction Stop
+    } else {
+        Invoke-Command -ComputerName $c -ScriptBlock $sb -ArgumentList $c,$services -ErrorAction Stop
+    }
 
-        $diskRows += @($result.Disks)
-        $svcRows  += @($result.Services)
+    if (-not $result) { throw "No data returned from remote scriptblock." }
 
-        $hostStatus += [pscustomobject]@{
-            ComputerName = $c
-            Status       = "Success"
-            Hostname     = $result.ComputerName
-            LastBootTime = $result.LastBootTime
-            UptimeHours  = $result.UptimeHours
-            Error        = ""
-            Timestamp    = Get-Date
-        }
-    } catch {
-        $hostStatus += [pscustomobject]@{
-            ComputerName = $c
-            Status       = "Failed"
-            Hostname     = ""
-            LastBootTime = ""
-            UptimeHours  = ""
-            Error        = $_.Exception.Message
-            Timestamp    = Get-Date
-        }
+    $diskRows += @($result.Disks)
+    $svcRows  += @($result.Services)
+
+    $hostStatus += [pscustomobject]@{
+        ComputerName = $c
+        Status       = "Success"
+        Hostname     = $result.ComputerName
+        LastBootTime = $result.LastBootTime
+        UptimeHours  = $result.UptimeHours
+        Error        = ""
+        Timestamp    = Get-Date
+    }
+} catch {
+    $hostStatus += [pscustomobject]@{
+        ComputerName = $c
+        Status       = "Failed"
+        Hostname     = ""
+        LastBootTime = ""
+        UptimeHours  = ""
+        Error        = $_.Exception.Message
+        Timestamp    = Get-Date
     }
 }
 
