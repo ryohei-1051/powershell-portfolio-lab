@@ -1,0 +1,3 @@
+"Target","ComputerName","DriveLetter","VolumeName","SizeGB","FreeGB","FreePct","Timestamp"
+"CLIENT1.ryohei.azlab","CLIENT1","C:","","126.15","87.91","69.68","6/3/2026 4:42:30 PM"
+"Lab4Server.ryohei.azlab","LAB4SERVER","C:","","39.37","27.61","70.14","6/3/2026 4:42:32 PM"
