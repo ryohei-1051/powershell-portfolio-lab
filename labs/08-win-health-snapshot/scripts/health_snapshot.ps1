@@ -169,6 +169,8 @@ foreach ($c in $computers) {
     }
 }
 
+}
+
 # Export (clean columns)
 $hostStatus |
   Select-Object ComputerName,Status,Hostname,LastBootTime,UptimeHours,Error,Timestamp |
