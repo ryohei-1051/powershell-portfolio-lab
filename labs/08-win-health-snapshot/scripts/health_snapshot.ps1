@@ -157,18 +157,17 @@ foreach ($c in $computers) {
         Error        = ""
         Timestamp    = Get-Date
     }
-} catch {
-    $hostStatus += [pscustomobject]@{
-        ComputerName = $c
-        Status       = "Failed"
-        Hostname     = ""
-        LastBootTime = ""
-        UptimeHours  = ""
-        Error        = $_.Exception.Message
-        Timestamp    = Get-Date
+        } catch {
+            $hostStatus += [pscustomobject]@{
+                ComputerName = $c
+                Status       = "Failed"
+                Hostname     = ""
+                LastBootTime = ""
+                UptimeHours  = ""
+                Error        = $_.Exception.Message
+                Timestamp    = Get-Date
+        }
     }
-}
-
 }
 
 # Export (clean columns)
