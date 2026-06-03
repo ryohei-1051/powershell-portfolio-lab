@@ -138,8 +138,8 @@ foreach ($c in $computers) {
 
     try {
 
-        $diskRows += $result.Disks
-        $svcRows  += $result.Services
+        $diskRows += @($result.Disks)
+        $svcRows  += @($result.Services)
 
         $hostStatus += [pscustomobject]@{
             ComputerName = $c
