@@ -25,6 +25,7 @@ powershell-portfolio-lab/
     05-win-local-admins-audit/
     06-win-software-inventory/
     07-win-security-logons-lockouts/
+    08-win-health-snapshot/
   shared/
     helpers/
       common.ps1
