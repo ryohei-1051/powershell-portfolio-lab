@@ -1,0 +1,3 @@
+"Target","ComputerName","LastBootTime","UptimeHours","LatestHotfixDate","LatestHotfixKBs","PendingReboot","PendingReasons","Timestamp"
+"CLIENT1.ryohei.azlab","CLIENT1","6/3/2026 3:46:16 PM","5.14","2/12/2026 12:00:00 AM","KB5077181;KB5077869;KB5071430;KB5066128;KB5050575;KB5054156;KB5054273","False","","6/3/2026 8:54:58 PM"
+"Lab4Server.ryohei.azlab","LAB4SERVER","6/3/2026 3:46:25 PM","5.14","3/3/2022 12:00:00 AM","KB5010523;KB5011497;KB5008882","True","WU_RebootRequired","6/3/2026 8:54:59 PM"

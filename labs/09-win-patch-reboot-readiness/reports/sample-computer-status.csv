@@ -1,0 +1,3 @@
+"ComputerName","Status","Hostname","PendingReboot","LatestHotfixDate","Error","Timestamp"
+"CLIENT1.ryohei.azlab","Success","CLIENT1","False","2/12/2026 12:00:00 AM","","6/3/2026 8:54:58 PM"
+"Lab4Server.ryohei.azlab","Success","LAB4SERVER","True","3/3/2022 12:00:00 AM","","6/3/2026 8:54:59 PM"
