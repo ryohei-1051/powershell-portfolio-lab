@@ -8,6 +8,8 @@ Each lab is self-contained under `labs/` with:
 - sample reports/output
 - a dedicated `README.md` with instructions and evidence
 
+Reflection notes: [REFLECTION.md](REFLECTION.md)
+
 > Note: This repo uses placeholders such as `example.local` in templates for general use.  
 > In my personal lab environment, I run these labs in the `ryohei.azlab` domain.
 
