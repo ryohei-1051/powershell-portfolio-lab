@@ -40,6 +40,8 @@ powershell-portfolio-lab/
 
 ## Labs Index
 
+Reflection notes: [REFLECTION.md](REFLECTION.md)
+
 ### Active Directory
 - **01-ad-bulk-users** *(completed)* — Bulk create/delete AD users from CSV (template-driven, existence checks, `-WhatIf` recommended). ([Lab README](labs/01-ad-bulk-users/README.md))
 - **02-ad-group-management** *(completed)* — Bulk add/remove users to/from AD groups from CSV (reporting included). ([Lab README](labs/02-ad-group-management/README.md))
@@ -51,7 +53,7 @@ powershell-portfolio-lab/
 - **06-win-software-inventory** *(completed)* — Multi-machine software inventory via WinRM using registry uninstall keys (HKLM x64 + WOW6432Node). ([Lab README](labs/06-win-software-inventory/README.md))
 - **07-win-security-logons-lockouts** *(completed)* — Multi-machine Security log audit via WinRM (4625/4776/4771 failures + 4740 lockouts, DC included). ([Lab README](labs/07-win-security-logons-lockouts/README.md))
 - **08-win-health-snapshot** *(completed)* — Multi-machine health snapshot via WinRM (disk usage + uptime + critical services from CSV). ([Lab README](labs/08-win-health-snapshot/README.md))
-- **09-win-patch-reboot-readiness** *(planned)* — Patch + pending reboot readiness via WinRM (latest hotfix signal + pending reboot indicators). ([Lab README](labs/09-win-patch-reboot-readiness/README.md))
+- **09-win-patch-reboot-readiness** *(completed)* — Patch + pending reboot readiness via WinRM (latest hotfix signal + pending reboot indicators). ([Lab README](labs/09-win-patch-reboot-readiness/README.md))
 ---
 
 ## Quick Start
